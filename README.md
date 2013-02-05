@@ -1,3 +1,28 @@
+##Whats in this fork
+
+This fork is very close to the orginal gem. I have added a few features and shortcut methods;
+
+    Highrise::Person.url_for(123)
+    Highrise::Person.find(123).phone_number
+    
+###Tag methods 
+    Highrise::Tag.delete_by_name('tag_name')
+    Highrise::Person.tagged_with_name('tag_name')
+    Highrise::Person.find(123).tagged?('tag_name')
+    
+###Email methods
+    Highrise::Person.find(123).email_address
+    Highrise::Person.find(123).email #alias for email_address 
+    Highrise::Person.find(123).email_valid?
+ 
+###Highrise Custom Fields - read and write (called "subject_datas" in the Highrise API)
+
+    p = Highrise::Person.find(123)
+    p.subject_data_hash #{"favourite_color"=>"red"}
+    p.field("FavouriteColor") #<Highrise::SubjectData:0xb5e3442c @attributes={"subject_field_label"=>"FavouriteColor", "id"=>12065552, "value"=>"red", "subject_field_id"=>123}, @prefix_options={}>
+    p.set_field_value("FavouriteColor","blue")
+    p.save
+
 # Highrise (3.0.0) [![Build Status](https://secure.travis-ci.org/tapajos/highrise.png)](http://travis-ci.org/tapajos/highrise)
 
 ## What is it?
@@ -10,7 +35,10 @@ All these classes are inherited from ActiveResouce::Base. Refer to the [ActiveRe
 
 ## Installing
 
-    gem install highrise
+    gem install peterosullivan-highrise
+    
+## Gemfile
+    gem 'peterosullivan-highrise', :require => 'highrise' 
 
 ### Dependencies (see <code>highrise.gemspec</code> or run <code>bundle check</code>)
 
